@@ -1,0 +1,736 @@
+<html>
+  <head>
+    <base href="." target="_blank" />
+    <title>Github Fun Repository</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      :root {
+        --bg-color: #0d1117;
+        --card-bg: #161b22;
+        --border-color: #30363d;
+        --text-color: #c9d1d9;
+        --link-color: #58a6ff;
+        --hover-bg: #21262d;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--bg-color);
+        color: var(--text-color);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .github-logo {
+        fill: var(--text-color);
+        animation: rotate 3s infinite linear;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        background: var(--hover-bg);
+        border-color: var(--link-color);
+        transform: translateY(-2px);
+      }
+
+      .link-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .category-title {
+        color: var(--link-color);
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: var(--bg-color);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem 0;
+        margin-bottom: 2rem;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      nav a:hover,
+      nav a.active {
+        background: var(--hover-bg);
+        color: var(--link-color);
+      }
+
+      .link-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        color: var(--link-color);
+      }
+
+      /* 保留现有的媒体查询 */
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          padding: 0.5rem;
+        }
+
+        nav a {
+          width: 100%;
+          text-align: center;
+          padding: 0.5rem;
+        }
+
+        .link-grid {
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+          gap: 0.75rem;
+        }
+
+        .header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .header-subtitle {
+          margin: 0.5rem 0;
+        }
+      }
+
+      /* 移动端优化 */
+      @media (max-width: 480px) {
+        .link-grid {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: 0.5rem;
+        }
+
+        .nav-link {
+          padding: 0.75rem;
+          font-size: 0.85rem;
+        }
+
+        .category-title {
+          font-size: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <svg class="github-logo" height="32" viewBox="0 0 16 16" width="32">
+          <path
+            fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+          ></path>
+        </svg>
+        <h1>GitHub Navigation Hub</h1>
+        <span class="header-subtitle"
+          >Developer's Essential Links Collection</span
+        >
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#ai-search">AI搜索</a></li>
+          <li><a href="#social">社交媒体</a></li>
+          <li><a href="#tools">实用工具</a></li>
+          <li><a href="#tech-news">科技资讯</a></li>
+          <li><a href="#cloud-storage">云存储</a></li>
+          <li><a href="#email">电子邮箱</a></li>
+        </ul>
+      </nav>
+
+      <main>
+        <h2 class="category-title" id="ai-search">AI搜索</h2>
+        <section class="link-grid">
+          <a href="https://www.google.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-google"></i></span>
+            Google
+          </a>
+          <a href="https://www.bing.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-microsoft"></i></span>
+            Bing
+          </a>
+          <a href="https://websim.ai/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-search"></i></span>
+            websim
+          </a>
+          <a href="https://chatgpt.com/" class="nav-link">
+            <span class="link-icon"><i class="fab fa-google"></i></span>
+            chatgpt
+          </a>
+          <a href="https://www.doubao.com/chat/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-paw"></i></span>
+            傻豆包
+          </a>
+          <a href="https://yuanbao.tencent.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-robot"></i></span>
+            傻元宝
+          </a>
+          <a href="https://aistudio.google.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-robot"></i></span>
+            google AIstudio
+          </a>
+          <a href="https://claude.ai/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-robot"></i></span>
+            claude
+          </a>
+          <a href="https://chandler.bet/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-robot"></i></span>
+            ChandlerAi
+          </a>
+          <a href="https://mistral.ai/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-brain"></i></span>
+            mistral
+          </a>
+          <a href="http://u.90tsg.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-clinic-medical"></i></span>
+            循证医学UTD
+          </a>
+          <a href="https://www.medscape.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-stethoscope"></i></span>
+            medscape
+          </a>
+          <a href="https://chat.oaichat.cc/" class="nav-link">
+            <span class="link-icon"><i class="fab fa-rocketchat"></i></span>
+            免费oaichat
+          </a>
+          <a href="https://app.leonardo.ai/" class="nav-link">
+            <span class="link-icon"><i class="far fa-images"></i></span>
+            leonardo.ai绘图
+          </a>
+          <a href="https://huggingface.co/" class="nav-link">
+            <span class="link-icon"
+              ><i class="fas fa-meh-rolling-eyes"></i
+            ></span>
+            huggingface
+          </a>
+          <a href="https://lmarena.ai/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-robot"></i></span>
+            lmarena
+          </a>
+          <a href="https://kelaode.ai/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-robot"></i></span>
+            kelaode
+          </a>
+          <a href="https://x.ai/" class="nav-link">
+            <span class="link-icon"><i class="fab fa-twitter-square"></i></span>
+            x.ai
+          </a>
+          <a href="https://ascvdpce.186404.xyz/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-heartbeat"></i></span>
+            pce计算
+          </a>
+        </section>
+
+        <h2 class="category-title" id="tools">实用工具</h2>
+        <section class="link-grid">
+          <a href="https://zh.go-to-library.sk/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-book-reader"></i></span>
+            Z-Library
+          </a>
+          <a href="https://nic.us.kg/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-globe"></i></span>
+            us.kg域名
+          </a>
+          <a href="https://www.spaceship.com/zh/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-space-shuttle"></i></span>
+            Spaceship廉价域名
+          </a>
+          <a href="https://www.cursor.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-i-cursor"></i></span>
+            cursor
+          </a>
+          <a href="https://fontawesome.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-icons"></i></span>
+            FontAwesome图标
+          </a>
+          <a href="https://scamalytics.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-search"></i></span>
+            ip清洁度查询
+          </a>
+          <a href="https://test-ipv6.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-ethernet"></i></span>
+            test-ipv6
+          </a>
+          <a href="https://html.zone/ip" class="nav-link">
+            <span class="link-icon"><i class="fab fa-sourcetree"></i></span>
+            zone/ip
+          </a>
+          <a
+            href="https://www.lumiproxy.com/zh-hans/online-proxy/proxysite/"
+            class="nav-link"
+          >
+            <span class="link-icon"><i class="fas fa-unlock"></i></span>
+            免费网络代理
+          </a>
+          <a href="https://ipcheck.ing/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-map-marker-alt"></i></span>
+            ipcheck
+          </a>
+          <a href="https://console.cron-job.org/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-clock"></i></span>
+            定时任务cron-job
+          </a>
+          <a href="https://uptimerobot.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-robot"></i></span>
+            uptimerobot
+          </a>
+          <a href="https://forwardemail.net/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-mail-bulk"></i></span>
+            forwardemail
+          </a>
+          <a href="https://improvmx.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-mail-bulk"></i></span>
+            improvmx
+          </a>
+          <a href="https://gb.w404.nyc.mn/" class="nav-link">
+            <span class="link-icon"><i class="fab fa-github"></i></span>
+            github文件加速
+          </a>
+          <a href="https://hostry.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-history"></i></span>
+            hostryDNS域名托管
+          </a>
+          <a href="https://www.sitelutions.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-sitemap"></i></span>
+            免费域名sitelutions
+          </a>
+          <a href="https://www.changeip.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-satellite-dish"></i></span>
+            免费域名changeip
+          </a>
+          <a href="https://dnsexit.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-users"></i></span>
+            免费域名dnsexit
+          </a>
+          <a href="https://www.nslookup.io/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-search"></i></span>
+            DNS查找nslookup
+          </a>
+          <a href="https://ping0.cc/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-fingerprint"></i></span>
+            ping0
+          </a>
+          <a href="https://customer.l53.net/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-fingerprint"></i></span>
+            L53免费域名
+          </a>
+          <a href="http://free-proxy.cz/en/" class="nav-link">
+            <span class="link-icon"
+              ><i class="fab fa-internet-explorer"></i
+            ></span>
+            free-proxy
+          </a>
+          <a href="https://www.croxyproxy.rocks/_zh/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-unlock"></i></span>
+            在线代理croxyproxy
+          </a>
+          <a href="https://doocs.github.io/md/" class="nav-link">
+            <span class="link-icon"><i class="far fa-edit"></i></span>
+            微信Markdown编辑器
+          </a>
+          <a href="https://translate.google.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-language"></i></span>
+            Google翻译
+          </a>
+          <a href="https://fast.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-tachometer-alt"></i></span>
+            网速测试
+          </a>
+          <a href="https://www.cloudflare.com/zh-cn/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-shield-alt"></i></span>
+            Cloudflare
+          </a>
+          <a href="https://email.ml" class="nav-link">
+            <span class="link-icon"><i class="fas fa-envelope"></i></span>
+            临时邮箱
+          </a>
+          <a href="https://www.ahhhhfs.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-blog"></i></span>
+            A姐
+          </a>
+          <a href="https://ip.sb/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-map-marker-alt"></i></span>
+            IP查询
+          </a>
+          <a href="https://dns.he.net/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-network-wired"></i></span>
+            dns.he域名托管
+          </a>
+          <a href="https://www.site.ac/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-exchange-alt"></i></span>
+            Site域名转发
+          </a>
+          <a href="https://tools.pdf24.org/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-file-pdf"></i></span>
+            PDF在线工具
+          </a>
+          <a href="https://ygpy.net/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-user-friends"></i></span>
+            一个朋友
+          </a>
+        </section>
+
+        <h2 class="category-title" id="social">社交媒体</h2>
+        <section class="link-grid">
+          <a href="https://www.instagram.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-instagram"></i></span>
+            Instagram
+          </a>
+          <a href="https://www.linkedin.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-linkedin"></i></span>
+            LinkedIn
+          </a>
+          <a href="https://www.tiktok.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-tiktok"></i></span>
+            TikTok
+          </a>
+          <a href="https://www.reddit.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-reddit"></i></span>
+            Reddit
+          </a>
+          <a href="https://www.facebook.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-facebook"></i></span>
+            Facebook
+          </a>
+          <a href="https://twitter.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-twitter"></i></span>
+            Twitter
+          </a>
+          <a href="https://github.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-github"></i></span>
+            GitHub
+          </a>
+        </section>
+
+        <h2 class="category-title" id="tech-news">科技资讯</h2>
+        <section class="link-grid">
+          <a href="https://www.techcrunch.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-newspaper"></i></span>
+            TechCrunch
+          </a>
+          <a href="https://www.wired.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-bolt"></i></span>
+            Wired
+          </a>
+          <a href="https://www.theverge.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-laptop"></i></span>
+            The Verge
+          </a>
+          <a href="https://arstechnica.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-rocket"></i></span>
+            Ars Technica
+          </a>
+          <a href="https://www.engadget.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-mobile-alt"></i></span>
+            Engadget
+          </a>
+          <a href="https://techradar.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-satellite"></i></span>
+            TechRadar
+          </a>
+          <a href="https://b.186404.xyz/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-blog"></i></span>
+            科技博客
+          </a>
+          <a href="https://www.cnbeta.com.tw/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-info-circle"></i></span>
+            cnbeta
+          </a>
+          <a href="https://www.36kr.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-newspaper"></i></span>
+            36氪
+          </a>
+          <a href="https://www.ifanr.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-mobile-alt"></i></span>
+            爱范儿
+          </a>
+        </section>
+
+        <h2 class="category-title" id="cloud-storage">云存储</h2>
+        <section class="link-grid">
+          <a href="https://www.dropbox.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-cloud"></i></span>
+            Dropbox
+          </a>
+          <a href="https://drive.google.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-google-drive"></i></span>
+            Google Drive
+          </a>
+          <a href="https://onedrive.live.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-microsoft"></i></span>
+            OneDrive
+          </a>
+          <a href="https://www.box.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-box"></i></span>
+            Box
+          </a>
+          <a href="https://www.mediafire.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-file-alt"></i></span>
+            MediaFire
+          </a>
+          <a href="https://mega.nz" class="nav-link">
+            <span class="link-icon"
+              ><i class="fas fa-cloud-upload-alt"></i
+            ></span>
+            MEGA
+          </a>
+          <a href="https://mypikpak.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-cloud"></i></span>
+            PikPak
+          </a>
+        </section>
+
+        <h2 class="category-title" id="email">电子邮箱</h2>
+        <section class="link-grid">
+          <a href="https://mail.google.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-envelope"></i></span>
+            Gmail
+          </a>
+          <a href="https://outlook.live.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-microsoft"></i></span>
+            Outlook
+          </a>
+          <a href="https://cock.li/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-envelope-open"></i></span>
+            cock邮箱
+          </a>
+          <a href="https://disroot.org/" class="nav-link">
+            <span class="link-icon"
+              ><i class="fas fa-envelope-square"></i
+            ></span>
+            disroot邮箱
+          </a>
+          <a href="https://www.protonmail.com" class="nav-link">
+            <span class="link-icon"><i class="fas fa-shield-alt"></i></span>
+            ProtonMail
+          </a>
+          <a href="https://mail.qq.com" class="nav-link">
+            <span class="link-icon"><i class="fab fa-qq"></i></span>
+            QQ邮箱
+          </a>
+          <a href="https://librem.one/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-at"></i></span>
+            librem邮箱
+          </a>
+          <a href="https://www.linshigmail.com/" class="nav-link">
+            <span class="link-icon"><i class="fas fa-mail-bulk"></i></span>
+            临时谷歌邮箱
+          </a>
+        </section>
+      </main>
+    </div>
+
+    <div id="particles"></div>
+
+    <script>
+      const contributionGraph = document.getElementById("contributionGraph");
+      const colors = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
+
+      for (let i = 0; i < 364; i++) {
+        const day = document.createElement("div");
+        day.className = "day";
+        day.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+
+        day.addEventListener("mouseover", (e) => {
+          const date = new Date();
+          date.setDate(date.getDate() - (364 - i));
+          const contributions = Math.floor(Math.random() * 15);
+          const commitMessages = [
+            "Implemented new AI features",
+            "Fixed critical security issues",
+            "Optimized database queries",
+            "Added unit tests",
+            "Refactored legacy code",
+          ];
+          const randomMessage =
+            commitMessages[Math.floor(Math.random() * commitMessages.length)];
+          e.target.title = `${contributions} contributions on ${date.toDateString()}\n${randomMessage}`;
+        });
+
+        contributionGraph.appendChild(day);
+      }
+
+      document.querySelectorAll(".repo-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const xRotate = (y - rect.height / 2) / 20;
+          const yRotate = -(x - rect.width / 2) / 20;
+
+          card.style.transform = `perspective(1000px) rotateX(${xRotate}deg) rotateY(${yRotate}deg) scale(1.05)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "perspective(1000px) rotateX(0) rotateY(0)";
+        });
+
+        card.addEventListener("click", () => {
+          card.style.transform = "scale(0.95)";
+          setTimeout(() => {
+            card.style.transform = "translateY(-5px) scale(1.02)";
+          }, 200);
+        });
+      });
+
+      // Initialize particles container
+      const particlesContainer = document.getElementById("particles");
+
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.animationDuration = Math.random() * 3 + 2 + "s";
+        particlesContainer.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 5000);
+      }
+
+      // Add cleanup for existing particles when creating new ones
+      function cleanupParticles() {
+        while (particlesContainer.firstChild) {
+          particlesContainer.removeChild(particlesContainer.firstChild);
+        }
+      }
+
+      // Start particle creation with cleanup
+      setInterval(() => {
+        cleanupParticles(); // Clean up old particles periodically
+        createParticle();
+      }, 200);
+
+      setInterval(() => {
+        const days = document.querySelectorAll(".day");
+        const randomDays = Array.from(
+          { length: 3 },
+          () => days[Math.floor(Math.random() * days.length)]
+        );
+        randomDays.forEach((day) => {
+          day.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+          day.style.transform = "scale(1.2)";
+          setTimeout(() => {
+            day.style.transform = "scale(1)";
+          }, 500);
+        });
+      }, 2000);
+
+      // Add sparkle effect to achievement badges
+      document.querySelectorAll(".achievement-badge").forEach((badge) => {
+        setInterval(() => {
+          badge.style.transform = "rotate(15deg) scale(1.1)";
+          setTimeout(() => {
+            badge.style.transform = "rotate(15deg) scale(1)";
+          }, 200);
+        }, 3000);
+      });
+
+      // 添加平滑滚动
+      document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // 添加滚动时导航栏高亮
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= sectionTop - 60) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              if (
+                link.getAttribute("href").substring(1) ===
+                section.getAttribute("id")
+              ) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
